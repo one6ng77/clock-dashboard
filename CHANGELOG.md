@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/teojs/clock-dashboard/compare/v1.3.0...v1.4.0) (2025-12-22)
+
+
+### Features
+
+* **weather:** add humidity and wind speed icons to the weather component for enhanced visual representation ([7725bfd](https://github.com/teojs/clock-dashboard/commit/7725bfd12695d077672af3eaaa373e668371574e))
+* **weather:** enhance weather component with additional metrics including UV index, precipitation probability, and apparent temperature for improved user insights ([597e4dc](https://github.com/teojs/clock-dashboard/commit/597e4dce3ce497566d1c7d14254e02e78406a87e))
+
 ## [1.3.0](https://github.com/teojs/clock-dashboard/compare/v1.2.1...v1.3.0) (2025-12-22)
 
 
