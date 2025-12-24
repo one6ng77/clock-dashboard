@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.3](https://github.com/teojs/clock-dashboard/compare/v1.6.2...v1.6.3) (2025-12-24)
+
+
+### Bug Fixes
+
+* **settings:** remove unnecessary class from SettingsModal for cleaner layout ([7285ce3](https://github.com/teojs/clock-dashboard/commit/7285ce3d9a9482d24d02ae587404a0e8a7708c0a))
+
 ### [1.6.2](https://github.com/teojs/clock-dashboard/compare/v1.6.1...v1.6.2) (2025-12-23)
 
 ### [1.6.1](https://github.com/teojs/clock-dashboard/compare/v1.6.0...v1.6.1) (2025-12-23)
