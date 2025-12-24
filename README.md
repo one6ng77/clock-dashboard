@@ -8,6 +8,8 @@
 一个基于 Vue 3 + TypeScript + Vite + Tailwind CSS 构建的天气时钟看板。
 将废弃iPad变为时钟看板，支持天气、农历、日历、Home Assistant 智能设备控制（通过左右滑动切换页面）。
 
+预览地址：[https://teojs.github.io/clock-dashboard/](https://teojs.github.io/clock-dashboard/)
+
 ---
 
 ## 🌟 特性
