@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { LocationMode } from '../stores/weather'
 import { RefreshCw, Save, X } from 'lucide-vue-next'
 import { storeToRefs } from 'pinia'
 import { ref, watch } from 'vue'
@@ -102,7 +103,7 @@ async function handleManualRefresh() {
               :key="mode"
               class="p-2 rounded-xl border transition-all text-center"
               :class="draft.locationMode === mode ? 'bg-white text-black border-white' : 'bg-white/5 border-white/10 hover:bg-white/10'"
-              @click="draft.locationMode = mode as any"
+              @click="draft.locationMode = (mode as LocationMode)"
             >
               {{ mode === 'auto' ? '自动定位' : mode === 'coords' ? '经纬度' : '城市名' }}
             </button>
@@ -111,12 +112,16 @@ async function handleManualRefresh() {
           <!-- Conditional Inputs -->
           <div v-if="draft.locationMode === 'coords'" class="mt-4 grid grid-cols-2 gap-4">
             <div class="space-y-2">
+              <label class="text-xs text-white/40 block ml-1">经度 (Longitude)</label>
+              <input v-model.number="draft.customLon" type="number" step="0.0001" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-white/30">
+            </div>
+            <div class="space-y-2">
               <label class="text-xs text-white/40 block ml-1">纬度 (Latitude)</label>
               <input v-model.number="draft.customLat" type="number" step="0.0001" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-white/30">
             </div>
-            <div class="space-y-2">
-              <label class="text-xs text-white/40 block ml-1">经度 (Longitude)</label>
-              <input v-model.number="draft.customLon" type="number" step="0.0001" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-white/30">
+            <div class="space-y-2 text-xs text-white/40 flex items-center col-span-2">
+              获取经纬度 :
+              <a href="https://lbs.baidu.com/maptool/getpoint" target="_blank" class="text-blue-500 ml-1">https://lbs.baidu.com/maptool/getpoint</a>
             </div>
           </div>
           <div v-if="draft.locationMode === 'city'" class="mt-4 space-y-2">
