@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useTime } from '../composables/useTime'
+import { useTime } from '../hooks/useTime'
 import Digit from './Digit.vue'
 import Weather from './Weather.vue'
 

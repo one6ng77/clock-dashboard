@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { useTime } from '../hooks/useTime'
 import { getLunarDate } from '../utils/lunar'
-import { useTime } from '../composables/useTime'
 
 const { now } = useTime()
 
@@ -36,7 +36,7 @@ const isEggActive = computed(() => {
   // 公历判断
   const isNYE = monthNow === 11 && dateNow === 31 && hNow === 23 && mNow === 59 && sNow >= 30
   const isNYD = monthNow === 0 && dateNow === 1 && hNow === 0 && mNow < 2
-  
+
   // 农历判断
   const isLunarEveActive = isLunarEve.value && hNow === 23 && mNow === 59 && sNow >= 30
   const isLunarDayActive = isLunarDay.value && hNow === 0 && mNow < 2
@@ -70,7 +70,7 @@ const isCountdownPeriod = computed(() => {
   const mNow = t.getMinutes()
   const sNow = t.getSeconds()
   const isTimeMatch = hNow === 23 && mNow === 59 && sNow >= 50
-  
+
   const isSolarNYE = t.getMonth() === 11 && t.getDate() === 31
   return (isSolarNYE || isLunarEve.value) && isTimeMatch
 })
@@ -83,7 +83,7 @@ const isCelebrationPeriod = computed(() => {
   const hNow = t.getHours()
   const mNow = t.getMinutes()
   const isTimeMatch = hNow === 0 && mNow < 1
-  
+
   const isSolarNYD = t.getMonth() === 0 && t.getDate() === 1
   return (isSolarNYD || isLunarDay.value) && isTimeMatch
 })
