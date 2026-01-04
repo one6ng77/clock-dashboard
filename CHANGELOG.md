@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.15.1](https://github.com/teojs/clock-dashboard/compare/v1.15.0...v1.15.1) (2026-01-04)
+
+
+### Bug Fixes
+
+* reorder city name fallback logic in weather store to prioritize locality ([d88f47f](https://github.com/teojs/clock-dashboard/commit/d88f47f4b78f9b056ef45d191b4ac26e464ea1fe))
+
 ## [1.15.0](https://github.com/teojs/clock-dashboard/compare/v1.14.1...v1.15.0) (2026-01-03)
 
 
