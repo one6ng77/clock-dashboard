@@ -1,13 +1,18 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
+import ClockSettingsModal from '../components/ClockSettingsModal.vue'
 import Digit from '../components/Digit.vue'
 import Weather from '../components/Weather.vue'
 import { useTime } from '../hooks/useTime'
+import { useConfigStore } from '../stores/config'
 
-const { h1, h2, m1, m2, s1, s2, lunar, now, showSeconds } = useTime()
+const { h1, h2, m1, m2, s1, s2, lunar, now } = useTime()
 
-function toggleSeconds() {
-  showSeconds.value = !showSeconds.value
-}
+const configStore = useConfigStore()
+const { clockConfig } = storeToRefs(configStore)
+
+const showClockSettings = ref(false)
 </script>
 
 <template>
@@ -37,31 +42,59 @@ function toggleSeconds() {
     <!-- 时钟显示 -->
     <div
       class="clock-display tabular-nums cursor-pointer transition-all duration-500"
-      :class="{ 'with-seconds': showSeconds }"
-      @click="toggleSeconds"
+      :class="{ 'with-seconds': clockConfig.showSeconds }"
+      :style="{ color: clockConfig.color, fontWeight: clockConfig.fontWeight, opacity: clockConfig.opacity }"
+      @click="showClockSettings = true"
     >
-      <Digit :value="h1" :show-seconds="showSeconds" :trigger="showSeconds ? now.getTime() : Math.floor(now.getTime() / 60000)" />
-      <Digit :value="h2" :show-seconds="showSeconds" :trigger="showSeconds ? now.getTime() : Math.floor(now.getTime() / 60000)" />
+      <Digit
+        :value="h1" :show-seconds="clockConfig.showSeconds" :enable-tilt="clockConfig.enableTilt" :delay="500"
+        :trigger="clockConfig.showSeconds ? now.getTime() : Math.floor(now.getTime() / 60000)"
+        class="opacity-95"
+      />
+      <Digit
+        :value="h2" :show-seconds="clockConfig.showSeconds" :enable-tilt="clockConfig.enableTilt" :delay="400"
+        :trigger="clockConfig.showSeconds ? now.getTime() : Math.floor(now.getTime() / 60000)"
+        class="opacity-95 brightness"
+      />
 
       <div class="clock-separator">
         :
       </div>
 
-      <Digit :value="m1" :show-seconds="showSeconds" :trigger="showSeconds ? now.getTime() : Math.floor(now.getTime() / 60000)" />
-      <Digit :value="m2" :show-seconds="showSeconds" :trigger="showSeconds ? now.getTime() : Math.floor(now.getTime() / 60000)" />
+      <Digit
+        :value="m1" :show-seconds="clockConfig.showSeconds" :enable-tilt="clockConfig.enableTilt" :delay="300"
+        :trigger="clockConfig.showSeconds ? now.getTime() : Math.floor(now.getTime() / 60000)"
+        class="opacity-95"
+      />
+      <Digit
+        :value="m2" :show-seconds="clockConfig.showSeconds" :enable-tilt="clockConfig.enableTilt" :delay="200"
+        :trigger="clockConfig.showSeconds ? now.getTime() : Math.floor(now.getTime() / 60000)"
+        class="opacity-95 brightness"
+      />
 
-      <div v-if="showSeconds" class="clock-separator second-separator">
-        :
-      </div>
-
-      <template v-if="showSeconds">
-        <Digit class="second-digit" :value="s1" :show-seconds="showSeconds" :trigger="now.getTime()" />
-        <Digit class="second-digit" :value="s2" :show-seconds="showSeconds" :trigger="now.getTime()" />
+      <template v-if="clockConfig.showSeconds">
+        <div
+          class="clock-separator second-separator"
+          :style="{ opacity: clockConfig.opacity * 0.65 }"
+        >
+          :
+        </div>
+        <Digit
+          class="second-digit opacity-60" :value="s1" :show-seconds="clockConfig.showSeconds" :delay="100"
+          :enable-tilt="clockConfig.enableTilt" :trigger="now.getTime()"
+        />
+        <Digit
+          class="second-digit brightness opacity-60" :value="s2" :show-seconds="clockConfig.showSeconds" :delay="0"
+          :enable-tilt="clockConfig.enableTilt" :trigger="now.getTime()"
+        />
       </template>
     </div>
 
     <!-- 天气展示 -->
     <Weather />
+
+    <!-- 时钟设置弹窗 -->
+    <ClockSettingsModal :show="showClockSettings" @close="showClockSettings = false" />
   </div>
 </template>
 
@@ -73,10 +106,11 @@ function toggleSeconds() {
 .date-day-big {
   font-size: 8rem; /* iOS 12 Fallback: 约 80px */
   line-height: 1;
-  font-weight: 800;
+  font-weight: 700;
   background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0.7));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-family: 'SF Pro Rounded', sans-serif;
 }
 
 .clock-display {
@@ -85,13 +119,12 @@ function toggleSeconds() {
   flex-wrap: nowrap !important;
   align-items: center;
   justify-content: center;
-  font-family: 'Huninn', sans-serif;
+  font-family: 'SF Pro Rounded', sans-serif;
   font-size: 35vw; /* iOS 12 Fallback 1: 响应式比例 */
   font-size: 22rem; /* iOS 12 Fallback 2: 强制大字号 */
   font-size: clamp(10rem, 35vw, 25rem);
-  font-weight: 1000;
+  font-weight: 700;
   line-height: 1.1;
-  -webkit-text-stroke: 2px white; /* 恢复适中的描边加粗 */
 }
 
 .clock-display.with-seconds {
@@ -99,19 +132,24 @@ function toggleSeconds() {
 }
 
 .clock-separator {
-  opacity: 1;
+  opacity: 0.98;
   text-align: center;
   margin: 0 -0.1em; /* 适当重叠，但比数字间距小 */
-  font-weight: 700;
   display: flex;
   justify-content: center;
   line-height: 1;
   position: relative;
   top: -0.05em; /* 稍微上移一点，视觉上更垂直居中 */
+  z-index: 10;
+  filter: brightness(1.8);
 }
 
 .second-separator,
 .second-digit {
   opacity: 0.6;
+}
+
+.brightness {
+  filter: brightness(1.25);
 }
 </style>
