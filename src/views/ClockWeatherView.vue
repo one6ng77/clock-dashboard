@@ -89,7 +89,7 @@ const baseDelay = computed(() => {
       <template v-if="clockConfig.showSeconds">
         <div
           class="clock-separator second-separator"
-          :style="{ opacity: clockConfig.opacity * 0.65 }"
+          :style="{ opacity: clockConfig.opacity * 0.7 }"
         >
           :
         </div>
@@ -136,33 +136,26 @@ const baseDelay = computed(() => {
   flex-wrap: nowrap !important;
   align-items: center;
   justify-content: center;
-  font-family: 'SFCompactRounded', sans-serif;
-  font-size: 35vw; /* iOS 12 Fallback 1: 响应式比例 */
-  font-size: 22rem; /* iOS 12 Fallback 2: 强制大字号 */
-  font-size: clamp(10rem, 35vw, 25rem);
-  line-height: 1.1;
+  font-family: 'SFCompactRounded', 'Huninn', sans-serif;
+  font-size: min(26rem, 46vw);
 }
 
 .clock-display.with-seconds {
-  font-size: 28vw; /* iOS 12 Fallback 1 */
+  font-size: min(20rem, 28vw);
 }
 
 .clock-separator {
+  font-size: 95%;
   opacity: 0.98;
   text-align: center;
-  margin: 0 -0.1em; /* 适当重叠，但比数字间距小 */
+  margin: 0 -0.08em;
   display: flex;
   justify-content: center;
-  line-height: 1;
+  line-height: 0.8em;
   position: relative;
-  top: -0.05em; /* 稍微上移一点，视觉上更垂直居中 */
+  top: -0.05em;
   z-index: 10;
   filter: brightness(1.8);
-}
-
-.second-separator,
-.second-digit {
-  opacity: 0.6;
 }
 
 .brightness {
