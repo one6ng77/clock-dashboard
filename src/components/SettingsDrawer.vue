@@ -79,8 +79,8 @@ function closeDrawer() {
                 :class="activeTab === tab.id ? 'bg-white/[0.09] font-bold shadow-lg border-white/60' : 'text-white/40 hover:text-white/70 hover:bg-white/5'"
                 @click="activeTab = tab.id"
               >
-                <span class="flex flex-col md:flex-row items-center gap-3 px-3 py-4 md:py-3">
-                  <component :is="tab.icon" class="w-6 h-6" />
+                <span class="flex flex-col md:flex-row items-center px-3 py-4 md:py-3">
+                  <component :is="tab.icon" class="w-6 h-6 mr-0 md:mr-2 mb-2 md:mb-0" />
                   <span class="text-xs md:text-base md:tracking-wide">{{ tab.name }}</span>
                 </span>
               </button>
