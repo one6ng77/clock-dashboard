@@ -213,7 +213,7 @@ function closeDrawer() {
 
 .settings-tab-btn {
   padding: 0.5rem 0.5rem;
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.05);
   color: rgba(255, 255, 255, 0.4);
@@ -234,7 +234,7 @@ function closeDrawer() {
   width: 100%;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   padding: 0.75rem 1rem;
   color: white;
   outline: none;
@@ -252,7 +252,7 @@ function closeDrawer() {
   padding: 0.75rem 1rem;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   color: rgba(255, 255, 255, 0.4);
   font-size: 0.75rem;
   font-weight: 500;
