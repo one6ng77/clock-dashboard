@@ -275,7 +275,7 @@ defineExpose({ save, reset })
         @click="handleManualRefresh"
       >
         <span class="flex items-center gap-2">
-          <RefreshCw class="w-4 h-4" :class="{ 'animate-spin': weatherLoading }" /> 立即刷新天气
+          <RefreshCw class="w-4 h-4 mr-2" :class="{ 'animate-spin': weatherLoading }" /> 立即刷新天气
         </span>
       </button>
     </div>
