@@ -183,7 +183,7 @@ defineExpose({ refreshToday })
               <span
                 :class="day.lunar.isFestival ? 'text-blue-300 opacity-100' : 'opacity-60'"
               >
-                {{ day.lunar.date }}
+                {{ day.lunar.festival || (day.lunar.date === '初一' ? `${day.lunar.month}月` : day.lunar.date) }}
               </span>
               <template v-if="calendarConfig.showHolidays && day.lunar.holiday">
                 <span class="opacity-60"> · </span>

@@ -58,14 +58,13 @@ const showLunar = computed(() => locale.value !== 'en-US')
           <!-- 农历信息 -->
           <div class="text-xl flex flex-wrap gap-2">
             <span>
-              {{ lunar.year }}({{ lunar.yearShengxiao }})年 {{ lunar.month }}({{ lunar.monthGanzhi }})月 {{ lunar.dayInChinese }}({{ lunar.dayGanzhi }})日
+              {{ lunar.year }}({{ lunar.yearShengxiao }})年 {{ lunar.month }}({{ lunar.monthGanzhi }})月 {{ lunar.date }}({{ lunar.dayGanzhi }})日
             </span>
             <span v-if="lunar.festival" class="text-blue-400">
-              {{ lunar.festival }}
+              · {{ lunar.festival }}
             </span>
-            <span v-if="lunar.holiday" class="text-white/40"> · </span>
             <span v-if="lunar.holiday" :class="lunar.holiday === '休' ? 'text-red-400' : 'text-orange-400'">
-              {{ lunar.holiday }}
+              · {{ lunar.holiday }}
             </span>
           </div>
 
