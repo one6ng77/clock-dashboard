@@ -22,7 +22,7 @@ export default defineConfig({
         id: 'clock-dashboard',
         name: '天气时钟',
         short_name: '天气时钟',
-        description: '基于 Vue 3 的天气时钟看板',
+        description: '一个简约的在线天气时钟',
         theme_color: '#000000',
         background_color: '#000000',
         display: 'standalone',
@@ -48,7 +48,7 @@ export default defineConfig({
           },
           {
             src: 'screenshots/5.png',
-            sizes: '2532×1170',
+            sizes: '2532x1170',
             type: 'image/png',
           },
         ],
